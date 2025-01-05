@@ -8,8 +8,24 @@ import {
 } from '@material-tailwind/react';
 import { Square3Stack3DIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { QuizCard } from './QuizCard';
+import { AddQuizForm } from './AddQuizForm';
+import { DefaultStepper } from './Stepper';
+import { SelectModule } from './SelectModule';
 
 export function TabsWithIcon() {
+  const steps = [
+    {
+      value: 0,
+      name: 'Select Module',
+      component: <SelectModule />,
+    },
+    {
+      value: 1,
+      name: 'Add Quiz',
+      component: <AddQuizForm />,
+    },
+  ];
+
   const data = [
     {
       label: 'All Quiz',
@@ -21,7 +37,11 @@ export function TabsWithIcon() {
       label: 'Add Quiz',
       value: 'add-quiz',
       icon: UserCircleIcon,
-      desc: <QuizCard>{<>Hello World 2</>}</QuizCard>,
+      desc: (
+        <QuizCard>
+          <DefaultStepper steps={steps} />
+        </QuizCard>
+      ),
     },
   ];
 
