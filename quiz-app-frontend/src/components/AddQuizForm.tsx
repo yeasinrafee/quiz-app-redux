@@ -1,18 +1,40 @@
 import { Card, Input, Button, Typography } from '@material-tailwind/react';
+import { useAppSelector } from '../redux/hooks';
 
 export function AddQuizForm() {
+  const { moduleTitle } = useAppSelector((state) => state.module);
   return (
-    <Card placeholder={''} color='transparent' shadow={false}>
-      <Typography placeholder={''} variant='h4' color='blue-gray'>
-        Add Quiz
+    <Card
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}
+      placeholder={''}
+      color='transparent'
+      shadow={false}
+    >
+      <Typography
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        placeholder={''}
+        variant='h4'
+        color='blue-gray'
+      >
+        {moduleTitle}
       </Typography>
-      <Typography placeholder={''} color='gray' className='mt-1 font-normal'>
+      <Typography
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        placeholder={''}
+        color='gray'
+        className='mt-1 font-normal'
+      >
         Add your quiz below
       </Typography>
       <form className='mt-8 mb-2 w-full'>
         <div className='mb-1 grid grid-cols-2 gap-4'>
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -21,6 +43,8 @@ export function AddQuizForm() {
               Question
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -32,6 +56,8 @@ export function AddQuizForm() {
           </div>
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -40,6 +66,8 @@ export function AddQuizForm() {
               Description
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -52,6 +80,8 @@ export function AddQuizForm() {
 
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -60,6 +90,8 @@ export function AddQuizForm() {
               Option 1
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -71,6 +103,8 @@ export function AddQuizForm() {
           </div>
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -79,6 +113,8 @@ export function AddQuizForm() {
               Option 2
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -90,6 +126,8 @@ export function AddQuizForm() {
           </div>
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -98,6 +136,8 @@ export function AddQuizForm() {
               Option 3
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -109,6 +149,8 @@ export function AddQuizForm() {
           </div>
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -117,6 +159,8 @@ export function AddQuizForm() {
               Option 4
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -128,6 +172,8 @@ export function AddQuizForm() {
           </div>
           <div>
             <Typography
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               placeholder={''}
               variant='h6'
               color='blue-gray'
@@ -136,6 +182,8 @@ export function AddQuizForm() {
               Correct Answer
             </Typography>
             <Input
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               crossOrigin={''}
               size='lg'
               placeholder='name@mail.com'
@@ -147,7 +195,14 @@ export function AddQuizForm() {
           </div>
         </div>
         <div className='flex justify-end'>
-          <Button size='sm'>Add Quiz</Button>
+          <Button
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
+            placeholder={''}
+            size='sm'
+          >
+            Add Quiz
+          </Button>
         </div>
       </form>
     </Card>
