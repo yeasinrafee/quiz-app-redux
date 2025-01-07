@@ -5,6 +5,7 @@ import {
   Dialog,
   DialogBody,
   DialogFooter,
+  Typography,
 } from '@material-tailwind/react';
 import { useGetAllQuizByModuleIdQuery } from '../redux/features/quiz/quizApi';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
@@ -49,19 +50,49 @@ export function QuizModal({ moduleId }: { moduleId: string }) {
           {quizes?.data.map(
             (quiz: any, index: number) =>
               currentQuestionIndex === index && (
-                <div className='flex justify-between'>
-                  <p>{quiz.question}</p>
-                  <p>{quiz.description}</p>
+                <div className=''>
+                  <Typography
+                    variant='h5'
+                    placeholder={''}
+                    onPointerEnterCapture={() => {}}
+                    onPointerLeaveCapture={() => {}}
+                  >
+                    {quiz.question}
+                  </Typography>
                 </div>
               )
           )}
+
+          <div className='grid grid-cols-2 gap-4 mt-4'>
+            {quizes?.data[currentQuestionIndex]?.options.map((option: any) => (
+              <Button
+                placeholder={''}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
+                variant={
+                  (quizes?.data[currentQuestionIndex]?.correctOption ===
+                    option &&
+                    'filled') ||
+                  'outlined'
+                }
+                color={
+                  (quizes?.data[currentQuestionIndex]?.correctOption ===
+                    option &&
+                    'green') ||
+                  'gray'
+                }
+              >
+                {option}
+              </Button>
+            ))}
+          </div>
         </DialogBody>
         <DialogFooter
           placeholder={''}
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         >
-          <div>
+          <div className='flex justify-end space-x-4'>
             {currentQuestionIndex > 0 && (
               <Button
                 placeholder={''}
