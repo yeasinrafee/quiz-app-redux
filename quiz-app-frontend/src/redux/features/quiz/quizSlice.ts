@@ -2,22 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type TQuiz = {
   module: string;
-  questions: string;
+  question: string;
   description: string;
   options: string[];
-  correctOptions: string[];
+  correctOption: string;
 };
 
 type TInitialState = {
   question: string;
   description: string;
   options: string[];
-  correctOptions: string;
+  correctOption: string;
   quiz: TQuiz[];
-};
-
-type TAction = {
-  payload: TQuiz;
 };
 
 const initialState: TInitialState = {
@@ -25,15 +21,21 @@ const initialState: TInitialState = {
   question: '',
   description: '',
   options: [],
-  correctOptions: '',
+  correctOption: '',
 };
 
 const quizSlice = createSlice({
   name: 'quiz',
   initialState,
   reducers: {
-    addQuiz: (state, action: TAction) => {
-      state.quiz.push(action.payload);
+    addQuiz: (state, action) => {
+      state.quiz.push({
+        module: action.payload,
+        question: state.question,
+        description: state.description,
+        options: state.options,
+        correctOption: state.correctOption,
+      });
     },
     setQuestion: (state, action) => {
       state.question = action.payload;
@@ -45,7 +47,13 @@ const quizSlice = createSlice({
       state.options.push(action.payload);
     },
     setCorrectOption: (state, action) => {
-      state.correctOptions = action.payload;
+      state.correctOption = action.payload;
+    },
+    resetQuizForm: (state) => {
+      state.question = '';
+      state.description = '';
+      state.options = [];
+      state.correctOption = '';
     },
   },
 });
@@ -56,6 +64,7 @@ export const {
   setDescription,
   setOptions,
   setCorrectOption,
+  resetQuizForm,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

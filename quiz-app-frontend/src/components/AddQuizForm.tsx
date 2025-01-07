@@ -8,6 +8,8 @@ import {
 } from '@material-tailwind/react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import {
+  addQuiz,
+  resetQuizForm,
   setCorrectOption,
   setDescription,
   setOptions,
@@ -15,9 +17,16 @@ import {
 } from '../redux/features/quiz/quizSlice';
 
 export function AddQuizForm() {
-  const { moduleTitle } = useAppSelector((state) => state.module);
-  const { options } = useAppSelector((state) => state.quiz);
+  const { moduleTitle, moduleId } = useAppSelector((state) => state.module);
+  const { options, question, description, correctOption } = useAppSelector(
+    (state) => state.quiz
+  );
   const dispatch = useAppDispatch();
+
+  const handleAddQuiz = () => {
+    dispatch(addQuiz(moduleId));
+    dispatch(resetQuizForm());
+  };
   return (
     <Card
       onPointerEnterCapture={() => {}}
@@ -58,6 +67,7 @@ export function AddQuizForm() {
               Question
             </Typography>
             <Input
+              value={question}
               onChange={(e) => dispatch(setQuestion(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -82,6 +92,7 @@ export function AddQuizForm() {
               Description
             </Typography>
             <Input
+              value={description}
               onChange={(e) => dispatch(setDescription(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -107,6 +118,7 @@ export function AddQuizForm() {
               Option 1
             </Typography>
             <Input
+              value={options[0]}
               onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -131,6 +143,7 @@ export function AddQuizForm() {
               Option 2
             </Typography>
             <Input
+              value={options[1]}
               onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -155,6 +168,7 @@ export function AddQuizForm() {
               Option 3
             </Typography>
             <Input
+              value={options[2]}
               onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -179,6 +193,7 @@ export function AddQuizForm() {
               Option 4
             </Typography>
             <Input
+              value={options[3]}
               onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -216,12 +231,22 @@ export function AddQuizForm() {
         </div>
         <div className='flex justify-end'>
           <Button
+            onClick={handleAddQuiz}
             onPointerEnterCapture={() => {}}
             onPointerLeaveCapture={() => {}}
             placeholder={''}
             size='sm'
           >
             Add Quiz
+          </Button>
+          <Button
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
+            placeholder={''}
+            size='sm'
+            className='ml-4'
+          >
+            Publish
           </Button>
         </div>
       </form>
