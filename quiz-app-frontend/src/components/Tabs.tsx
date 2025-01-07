@@ -51,9 +51,19 @@ export function TabsWithIcon() {
 
   return (
     <Tabs value='all-quiz'>
-      <TabsHeader placeholder={''}>
+      <TabsHeader
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        placeholder={''}
+      >
         {data.map(({ label, value, icon }) => (
-          <Tab placeholder={''} key={value} value={value}>
+          <Tab
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
+            placeholder={''}
+            key={value}
+            value={value}
+          >
             <div className='flex items-center gap-2'>
               {React.createElement(icon, { className: 'w-5 h-5' })}
               {label}
@@ -61,7 +71,11 @@ export function TabsWithIcon() {
           </Tab>
         ))}
       </TabsHeader>
-      <TabsBody placeholder={''}>
+      <TabsBody
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        placeholder={''}
+      >
         {data.map(({ value, desc }) => (
           <TabPanel key={value} value={value}>
             {desc}

@@ -3,8 +3,19 @@ import { ReactNode } from 'react';
 
 export function QuizCard({ children }: { children: ReactNode }) {
   return (
-    <Card placeholder='' className='mt-6 w-full h-full'>
-      <CardBody placeholder={''}>{children}</CardBody>
+    <Card
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}
+      placeholder=''
+      className='mt-6 w-full h-full'
+    >
+      <CardBody
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        placeholder={''}
+      >
+        {children}
+      </CardBody>
     </Card>
   );
 }

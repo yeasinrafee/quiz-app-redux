@@ -1,4 +1,4 @@
-import { Stepper, Step, step } from '@material-tailwind/react';
+import { Stepper, Step } from '@material-tailwind/react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setActiveStepper } from '../redux/features/stepper/stepperSlice';
 
@@ -16,7 +16,12 @@ export function DefaultStepper({ steps }: TStepperProps) {
 
   return (
     <div className='w-full py-4 px-8'>
-      <Stepper placeholder={''} activeStep={activeStep}>
+      <Stepper
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        placeholder={''}
+        activeStep={activeStep}
+      >
         {/* <Step
           placeholder={''}
           onClick={() => dispatch(setActiveStepper(0))}
@@ -33,6 +38,8 @@ export function DefaultStepper({ steps }: TStepperProps) {
         </Step> */}
         {steps.map((step) => (
           <Step
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
             placeholder={''}
             onClick={() => dispatch(setActiveStepper(step.value))}
             className='px-8 w-fit'
