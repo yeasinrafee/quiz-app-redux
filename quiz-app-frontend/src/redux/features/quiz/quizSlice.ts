@@ -55,6 +55,9 @@ const quizSlice = createSlice({
       state.options = [];
       state.correctOption = '';
     },
+    resetQuizPublish: (state) => {
+      state.quiz = [];
+    },
   },
 });
 
@@ -65,6 +68,7 @@ export const {
   setOptions,
   setCorrectOption,
   resetQuizForm,
+  resetQuizPublish,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

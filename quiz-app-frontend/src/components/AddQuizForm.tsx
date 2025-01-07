@@ -10,23 +10,33 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import {
   addQuiz,
   resetQuizForm,
+  resetQuizPublish,
   setCorrectOption,
   setDescription,
   setOptions,
   setQuestion,
 } from '../redux/features/quiz/quizSlice';
+import toast from 'react-hot-toast';
+import { useAddQuizMutation } from '../redux/api/baseApi';
 
 export function AddQuizForm() {
   const { moduleTitle, moduleId } = useAppSelector((state) => state.module);
-  const { options, question, description, correctOption } = useAppSelector(
-    (state) => state.quiz
-  );
+  const { options, question, description, correctOption, quiz } =
+    useAppSelector((state) => state.quiz);
+  const [publishQuiz, { data, isLoading }] = useAddQuizMutation();
   const dispatch = useAppDispatch();
 
   const handleAddQuiz = () => {
     dispatch(addQuiz(moduleId));
     dispatch(resetQuizForm());
   };
+
+  const handlePublish = async () => {
+    await publishQuiz(quiz);
+    dispatch(resetQuizPublish());
+    toast.success('Quiz Published Successfully!');
+  };
+
   return (
     <Card
       onPointerEnterCapture={() => {}}
@@ -218,6 +228,7 @@ export function AddQuizForm() {
               Correct Answer
             </Typography>
             <Select
+              selected={correctOption}
               onChange={(value) => dispatch(setCorrectOption(value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
@@ -240,6 +251,7 @@ export function AddQuizForm() {
             Add Quiz
           </Button>
           <Button
+            onClick={handlePublish}
             onPointerEnterCapture={() => {}}
             onPointerLeaveCapture={() => {}}
             placeholder={''}
