@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import {
   Tabs,
@@ -5,14 +6,19 @@ import {
   TabsBody,
   Tab,
   TabPanel,
+  Typography,
+  Button,
 } from '@material-tailwind/react';
 import { Square3Stack3DIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { QuizCard } from './QuizCard';
 import { AddQuizForm } from './AddQuizForm';
 import { DefaultStepper } from './Stepper';
 import { SelectModule } from './SelectModule';
+import { useGetAllModulesQuery } from '../redux/features/module/moduleApi';
+import { QuizModal } from './QuizModal';
 
 export function TabsWithIcon() {
+  const { data: modules, isLoading } = useGetAllModulesQuery('');
   const steps = [
     {
       value: 0,
@@ -39,7 +45,24 @@ export function TabsWithIcon() {
       label: 'All Quiz',
       value: 'all-quiz',
       icon: Square3Stack3DIcon,
-      desc: <QuizCard>{<>Hello World</>}</QuizCard>,
+      desc: (
+        <>
+          {modules?.data.map((module: any) => (
+            <QuizCard>
+              <Typography
+                placeholder={''}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
+              >
+                {module.title}
+              </Typography>
+              <div className='flex justify-end'>
+                <QuizModal moduleId={module._id} />
+              </div>
+            </QuizCard>
+          ))}
+        </>
+      ),
     },
     {
       label: 'Add Quiz',
@@ -53,6 +76,9 @@ export function TabsWithIcon() {
     },
   ];
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Tabs value='all-quiz'>
       <TabsHeader

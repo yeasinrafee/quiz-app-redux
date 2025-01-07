@@ -17,7 +17,7 @@ import {
   setQuestion,
 } from '../redux/features/quiz/quizSlice';
 import toast from 'react-hot-toast';
-import { useAddQuizMutation } from '../redux/api/baseApi';
+import { useAddQuizMutation } from '../redux/features/quiz/quizApi';
 
 export function AddQuizForm() {
   const { moduleTitle, moduleId } = useAppSelector((state) => state.module);

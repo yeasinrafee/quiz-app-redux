@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Select, Option, Spinner } from '@material-tailwind/react';
 import { useAppDispatch } from '../redux/hooks';
-import { useGetAllModulesQuery } from '../redux/api/baseApi';
 import { setSelectedModule } from '../redux/features/module/moduleSlice';
+import { useGetAllModulesQuery } from '../redux/features/module/moduleApi';
 
 export function SelectModule() {
   const dispatch = useAppDispatch();
