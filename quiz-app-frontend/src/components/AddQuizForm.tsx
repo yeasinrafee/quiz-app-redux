@@ -1,8 +1,23 @@
-import { Card, Input, Button, Typography } from '@material-tailwind/react';
-import { useAppSelector } from '../redux/hooks';
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Select,
+  Option,
+} from '@material-tailwind/react';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import {
+  setCorrectOption,
+  setDescription,
+  setOptions,
+  setQuestion,
+} from '../redux/features/quiz/quizSlice';
 
 export function AddQuizForm() {
   const { moduleTitle } = useAppSelector((state) => state.module);
+  const { options } = useAppSelector((state) => state.quiz);
+  const dispatch = useAppDispatch();
   return (
     <Card
       onPointerEnterCapture={() => {}}
@@ -43,6 +58,7 @@ export function AddQuizForm() {
               Question
             </Typography>
             <Input
+              onChange={(e) => dispatch(setQuestion(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
               crossOrigin={''}
@@ -66,6 +82,7 @@ export function AddQuizForm() {
               Description
             </Typography>
             <Input
+              onChange={(e) => dispatch(setDescription(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
               crossOrigin={''}
@@ -90,6 +107,7 @@ export function AddQuizForm() {
               Option 1
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
               crossOrigin={''}
@@ -113,6 +131,7 @@ export function AddQuizForm() {
               Option 2
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
               crossOrigin={''}
@@ -136,6 +155,7 @@ export function AddQuizForm() {
               Option 3
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
               crossOrigin={''}
@@ -159,6 +179,7 @@ export function AddQuizForm() {
               Option 4
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
               crossOrigin={''}
@@ -181,17 +202,16 @@ export function AddQuizForm() {
             >
               Correct Answer
             </Typography>
-            <Input
+            <Select
+              onChange={(value) => dispatch(setCorrectOption(value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
-              crossOrigin={''}
-              size='lg'
-              placeholder='name@mail.com'
-              className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
-              labelProps={{
-                className: 'before:content-none after:content-none',
-              }}
-            />
+              placeholder={''}
+            >
+              {options.map((option) => {
+                return <Option value={option}>{option}</Option>;
+              })}
+            </Select>
           </div>
         </div>
         <div className='flex justify-end'>

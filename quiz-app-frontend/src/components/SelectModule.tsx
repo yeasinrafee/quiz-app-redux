@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Select, Option, Spinner } from '@material-tailwind/react';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
 import { useGetAllModulesQuery } from '../redux/api/baseApi';
 import { setSelectedModule } from '../redux/features/module/moduleSlice';
 
 export function SelectModule() {
   const dispatch = useAppDispatch();
-  const { moduleTitle } = useAppSelector((state) => state.module);
   const { data: modules, isLoading } = useGetAllModulesQuery('');
 
   if (isLoading) {
@@ -24,7 +24,7 @@ export function SelectModule() {
       <Select
         onChange={(value) => {
           const moduleTitle = modules.data.find(
-            (module) => module._id === value
+            (module: any) => module._id === value
           ).title;
           dispatch(
             setSelectedModule({
@@ -44,7 +44,7 @@ export function SelectModule() {
         <Option>Material Tailwind Angular</Option>
         <Option>Material Tailwind Svelte</Option> */}
 
-        {modules?.data.map((module) => (
+        {modules?.data.map((module: any) => (
           <Option value={module.id}>{module.title}</Option>
         ))}
       </Select>
