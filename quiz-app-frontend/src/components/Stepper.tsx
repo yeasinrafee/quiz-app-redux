@@ -22,20 +22,6 @@ export function DefaultStepper({ steps }: TStepperProps) {
         placeholder={''}
         activeStep={activeStep}
       >
-        {/* <Step
-          placeholder={''}
-          onClick={() => dispatch(setActiveStepper(0))}
-          className='w-fit px-8'
-        >
-          All Quiz
-        </Step>
-        <Step
-          placeholder={''}
-          onClick={() => dispatch(setActiveStepper(1))}
-          className='w-fit px-8'
-        >
-          Add Quiz
-        </Step> */}
         {steps.map((step) => (
           <Step
             onPointerEnterCapture={() => {}}
