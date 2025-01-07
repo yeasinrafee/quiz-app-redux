@@ -7,7 +7,6 @@ import {
   Tab,
   TabPanel,
   Typography,
-  Button,
 } from '@material-tailwind/react';
 import { Square3Stack3DIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { QuizCard } from './QuizCard';

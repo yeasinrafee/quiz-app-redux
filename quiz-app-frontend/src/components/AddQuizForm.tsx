@@ -21,9 +21,10 @@ import { useAddQuizMutation } from '../redux/features/quiz/quizApi';
 
 export function AddQuizForm() {
   const { moduleTitle, moduleId } = useAppSelector((state) => state.module);
-  const { options, question, description, correctOption, quiz } =
-    useAppSelector((state) => state.quiz);
-  const [publishQuiz, { data, isLoading }] = useAddQuizMutation();
+  const { options, question, description, quiz } = useAppSelector(
+    (state) => state.quiz
+  );
+  const [publishQuiz] = useAddQuizMutation();
   const dispatch = useAppDispatch();
 
   const handleAddQuiz = () => {
@@ -228,7 +229,6 @@ export function AddQuizForm() {
               Correct Answer
             </Typography>
             <Select
-              selected={correctOption}
               onChange={(value) => dispatch(setCorrectOption(value))}
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
